@@ -1,0 +1,14 @@
+Source: wasta-cinnamon-bionic
+Section: utils
+Priority: optional
+Maintainer: Rik Shaw <rikshaw76@gmail.com>
+Build-Depends: debhelper (>= 8.0.0)
+Standards-Version: 3.9.5
+Homepage: https://github.com/wasta-linux/wasta-cinnamon-bionic
+
+Package: wasta-cinnamon-bionic
+Architecture: all
+Depends: arc-theme, cinnamon, muffin, nemo, wasta-core-bionic, wasta-multidesktop-bionic, wasta-vertex-ubuntu, ${shlibs:Depends}, ${misc:Depends}
+Recommends: blueberry, bookletimposer, nemo-compare, nemo-image-converter
+Description: Wasta-Linux Cinnamon
+ Wasta-Linux 18.04 Bionic Cinnamon Setup.
