@@ -22,23 +22,6 @@ then
 fi
 
 # ------------------------------------------------------------------------------
-# Initial prompt
-# ------------------------------------------------------------------------------
-echo
-echo "========================================================================="
-echo "=== Wasta-Linux Cinnamon Upgrade ========================================"
-echo "========================================================================="
-echo
-echo "This script will upgrade Cinnamon to a version provided by Wasta-Linux"
-echo "Cinnamon PPAs"
-echo
-echo "!!!Make sure Wasta-Offline is running if you want to use it!!!"
-echo
-echo "Close this window if you do not want to run this script."
-echo
-read -p "Press <Enter> to continue..."
-
-# ------------------------------------------------------------------------------
 # Initial Setup
 # ------------------------------------------------------------------------------
 
@@ -60,6 +43,26 @@ else
     AUTO=""
     YES=""
     INTERACTIVE=""
+fi
+
+# ------------------------------------------------------------------------------
+# Initial prompt
+# ------------------------------------------------------------------------------
+echo
+echo "========================================================================="
+echo "=== Wasta-Linux Cinnamon Upgrade ========================================"
+echo "========================================================================="
+echo
+echo "This script will upgrade Cinnamon to a version provided by Wasta-Linux"
+echo "Cinnamon PPAs"
+echo
+echo "!!!Make sure Wasta-Offline is running if you want to use it!!!"
+echo
+if ! [ "$AUTO" ];
+then
+    echo "Close this window if you do not want to run this script."
+    echo
+    read -p "Press <Enter> to continue..."
 fi
 
 # ------------------------------------------------------------------------------
