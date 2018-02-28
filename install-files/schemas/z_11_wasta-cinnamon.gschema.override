@@ -62,6 +62,7 @@
 #       it requires 2 hits (Cinnamon must "swallow" first super hit)
 #       - disabling panels-scale-text-icons since for bionic it will cause ibus
 #       menu problems
+#       - nemo: set icon-view size to standard
 #
 # ==============================================================================
 
@@ -193,6 +194,9 @@ network-icon-visible = false
 trash-icon-visible = false
 use-desktop-grid = false
 volumes-visible = true
+
+[org.nemo.icon-view]
+default-zoom-level = 'standard'
 
 [org.nemo.preferences]
 context-menus-show-all-actions = true
