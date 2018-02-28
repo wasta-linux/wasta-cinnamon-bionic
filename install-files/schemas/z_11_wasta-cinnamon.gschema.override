@@ -60,6 +60,8 @@
 #       - adding lid-close-suspend-with-external-monitor = true
 #   2018-02-28: modifying ibus hotkey trigger since with cinnamon if super then
 #       it requires 2 hits (Cinnamon must "swallow" first super hit)
+#       - disabling panels-scale-text-icons since for bionic it will cause ibus
+#       menu problems
 #
 # ==============================================================================
 
@@ -80,7 +82,7 @@ panels-enabled = ['1:0:bottom']
 panels-height = ['1:28']
 panel-edit-mode = false
 panels-resizable = ['1:false']
-panels-scale-text-icons = ['1:true']
+panels-scale-text-icons = ['1:false']
 show-snap-osd = false
 startup-animation = false
 
