@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (0.3.0) bionic; urgency=medium
+
+  * schemas: removing as wasta-cinnamon-layout now handles defaults
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 02 Apr 2018 09:35:45 +0300
+
 wasta-cinnamon-bionic (0.2.2) bionic; urgency=medium
 
   * schemas: setting nemo icon-view default size
