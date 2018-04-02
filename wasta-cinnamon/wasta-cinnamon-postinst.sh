@@ -53,17 +53,6 @@ echo
 DIR=/usr/share/wasta-cinnamon
 
 # ------------------------------------------------------------------------------
-# Dconf / Gsettings Default Value adjustments
-# ------------------------------------------------------------------------------
-echo
-echo "*** Updating dconf / gsettings default values"
-echo
-
-# MAIN System schemas: we have placed our override file in this directory
-# Sending any "error" to null (if key not found don't want to worry user)
-glib-compile-schemas /usr/share/glib-2.0/schemas/ > /dev/null 2>&1 || true;
-
-# ------------------------------------------------------------------------------
 # Finished
 # ------------------------------------------------------------------------------
 echo
