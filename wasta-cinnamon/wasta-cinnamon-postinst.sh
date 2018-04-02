@@ -23,6 +23,8 @@
 #       - wallpapers name fix: adding 0-9 to matching so that system76 is
 #       is matched, for example.
 #   2017-12-03 rik: initial bionic release
+#   2018-04-03 rik: removing schemas compile: schemas now in
+#       wasta-cinnmaon-layout-3-6
 #
 # ==============================================================================
 
