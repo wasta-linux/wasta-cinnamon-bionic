@@ -58,11 +58,12 @@
 #       of schemas should not be affected.
 #   2017-12-02 rik: initial bionic release
 #       - adding lid-close-suspend-with-external-monitor = true
-#   2018-02-28: modifying ibus hotkey trigger since with cinnamon if super then
-#       it requires 2 hits (Cinnamon must "swallow" first super hit)
+#   2018-02-28 rik: modifying ibus hotkey trigger since with cinnamon if super
+#       then it requires 2 hits (Cinnamon must "swallow" first super hit)
 #       - disabling panels-scale-text-icons since for bionic it will cause ibus
 #       menu problems
 #       - nemo: set icon-view size to standard
+#   2018-04-03 rik: setting gnome background to match wasta default
 #
 # ==============================================================================
 
@@ -184,6 +185,9 @@ triggers = ['<Control>space']
 custom-font = 'Ubuntu 11'
 xkb-icon-rgba = '#FFFFFF'
 use-custom-font = true
+
+[org.gnome.desktop.background]
+picture-uri = 'file:///usr/share/wasta-multidesktop/resources/clarity_by_sigi_sagi.jpg'
 
 [org.nemo.desktop]
 computer-icon-visible = false
