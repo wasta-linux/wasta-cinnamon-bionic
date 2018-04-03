@@ -25,6 +25,7 @@
 #   2017-12-03 rik: initial bionic release
 #   2018-04-03 rik: removing schemas compile: schemas now in
 #       wasta-cinnmaon-layout-3-6
+#   2018-04-04 rik: re-adding schemas compile: only needed for backgrounds
 #
 # ==============================================================================
 
@@ -51,6 +52,17 @@ echo
 
 # Setup Diretory for later reference
 DIR=/usr/share/wasta-cinnamon
+
+# ------------------------------------------------------------------------------
+# Dconf / Gsettings Default Value adjustments
+# ------------------------------------------------------------------------------
+echo
+echo "*** Updating dconf / gsettings default values"
+echo
+
+# MAIN System schemas: we have placed our override file in this directory
+# Sending any "error" to null (if key not found don't want to worry user)
+glib-compile-schemas /usr/share/glib-2.0/schemas/ > /dev/null 2>&1 || true;
 
 # ------------------------------------------------------------------------------
 # Finished
