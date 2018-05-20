@@ -5,6 +5,7 @@
 #   to a newer version (using Wasta Cinnamon PPAs)
 #
 #   2017-11-22 rik: Initial script
+#   2018-05-20 rik: updating for Cinnamon 3.8
 #
 # ==============================================================================
 
@@ -101,23 +102,26 @@ else
     fi
 fi
 
-# add Wasta-Linux Cinnamon 3.6 PPA
-if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6-$SERIES.list ];
+# add Wasta-Linux Cinnamon 3.8 PPA
+if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list ];
 then
     echo
-    echo "*** Adding Cinnamon 3.6 PPA"
+    echo "*** Adding Cinnamon 3.8 PPA"
     echo
 
-    echo "deb http://ppa.launchpad.net/wasta-linux/cinnamon-3-6/ubuntu $SERIES main" | \
-        tee $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6-$SERIES.list
-    echo "# deb-src http://ppa.launchpad.net/wasta-linux/cinnamon-3-6/ubuntu $SERIES main" | \
-        tee -a $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6-$SERIES.list
+    echo "deb http://ppa.launchpad.net/wasta-linux/cinnamon-3-8/ubuntu $SERIES main" | \
+        tee $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list
+    echo "# deb-src http://ppa.launchpad.net/wasta-linux/cinnamon-3-8/ubuntu $SERIES main" | \
+        tee -a $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list
 else
-    # found, but ensure Wasta-Linux Cinnamon 3.6 PPA ACTIVE (user could have accidentally disabled)
+    # found, but ensure Wasta-Linux Cinnamon 3.8 PPA ACTIVE (user could have accidentally disabled)
     # DO NOT match any lines ending in #wasta
     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-        $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6-$SERIES.list
+        $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list
 fi
+
+# remove older PPAs
+rm -f $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6*
 
 # ------------------------------------------------------------------------------
 # Perform dist-upgrade
@@ -127,56 +131,35 @@ echo "*** Updating lists of available software"
 echo
 
 apt-get update
-LASTERRORLEVEL=$?
-if [ "$LASTERRORLEVEL" -ne "0" ];
-then
-    if [ "$AUTO" ];
-    then
-        echo
-        echo "*** ERROR: apt-get command failed. You may want to re-run!"
-        echo
-    else
-        echo
-        echo "     --------------------------------------------------------"
-        echo "     'APT' Error During Update / Installation"
-        echo "     --------------------------------------------------------"
-        echo
-        echo "     An error was encountered with the last 'apt' command."
-        echo "     You should close this script and re-start it, or"
-        echo "     correct the error manually before proceeding."
-        echo
-        read -p "     Press any key to proceed..."
-        echo
-    fi
-fi
 
 echo
 echo "*** Upgrading all installed software"
 echo
 
 apt-get $YES dist-upgrade
-LASTERRORLEVEL=$?
-if [ "$LASTERRORLEVEL" -ne "0" ];
-then
-    if [ "$AUTO" ];
-    then
-        echo
-        echo "*** ERROR: apt-get command failed. You may want to re-run!"
-        echo
-    else
-        echo
-        echo "     --------------------------------------------------------"
-        echo "     'APT' Error During Update / Installation"
-        echo "     --------------------------------------------------------"
-        echo
-        echo "     An error was encountered with the last 'apt' command."
-        echo "     You should close this script and re-start it, or"
-        echo "     correct the error manually before proceeding."
-        echo
-        read -p "     Press any key to proceed..."
-        echo
-    fi
-fi
+
+echo
+echo "*** Ensuring wasta-cinnamon-layout updated"
+echo
+
+# 2016-05-04 rik: if attempting to remove a package that doesn't exist (such
+#   as can happen when using wasta-offline "offline only mode") apt-get purge
+#   will error and not remove anything.  So instead found this way to do it:
+#       http://superuser.com/questions/518859/ignore-packages-that-are-not-currently-installed-when-using-apt-get-remove
+pkgToRemoveListFull="\
+    wasta-cinnamon-layout-3-6"
+
+pkgToRemoveList=""
+for pkgToRemove in $(echo $pkgToRemoveListFull); do
+  $(dpkg --status $pkgToRemove &> /dev/null)
+  if [[ $? -eq 0 ]]; then
+    pkgToRemoveList="$pkgToRemoveList $pkgToRemove"
+  fi
+done
+
+apt-get $YES purge $pkgToRemoveList
+
+apt-get $YES install wasta-cinnamon-layout-3-8
 
 # ------------------------------------------------------------------------------
 # Finished

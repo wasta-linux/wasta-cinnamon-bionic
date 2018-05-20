@@ -1,8 +1,9 @@
 wasta-cinnamon-bionic (1.0.0) bionic; urgency=medium
 
   * recommends: adding wasta-cinnamon-layout-3-8
+  * wasta-cinnamon-upgrade: modifying for Cinnamon 3.8
 
- -- Rik Shaw <rikshaw76@gmail.com>  Sun, 20 May 2018 16:24:50 +0300
+ -- Rik Shaw <rikshaw76@gmail.com>  Sun, 20 May 2018 16:35:19 +0300
 
 wasta-cinnamon-bionic (0.3.1) bionic; urgency=medium
 
