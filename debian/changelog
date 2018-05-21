@@ -1,3 +1,10 @@
+wasta-cinnamon-bionic (1.0.1) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: force remove wasta-testing PPA (was active
+    in 18.04 ALPHA ISO)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 21 May 2018 19:31:53 +0300
+
 wasta-cinnamon-bionic (1.0.0) bionic; urgency=medium
 
   * recommends: adding wasta-cinnamon-layout-3-8

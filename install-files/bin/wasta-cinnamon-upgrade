@@ -6,6 +6,7 @@
 #
 #   2017-11-22 rik: Initial script
 #   2018-05-20 rik: updating for Cinnamon 3.8
+#   2018-05-21 rik: removing wasta-testing PPA (was active for 18.04 Alpha)
 #
 # ==============================================================================
 
@@ -103,25 +104,26 @@ else
 fi
 
 # add Wasta-Linux Cinnamon 3.8 PPA
-if ! [ -e $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list ];
+PPA_FILE="$APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list"
+if ! [ -e $PPA_FILE ];
 then
     echo
     echo "*** Adding Cinnamon 3.8 PPA"
     echo
 
     echo "deb http://ppa.launchpad.net/wasta-linux/cinnamon-3-8/ubuntu $SERIES main" | \
-        tee $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list
+        tee $PPA_FILE
     echo "# deb-src http://ppa.launchpad.net/wasta-linux/cinnamon-3-8/ubuntu $SERIES main" | \
-        tee -a $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list
+        tee -a $PPA_FILE
 else
     # found, but ensure Wasta-Linux Cinnamon 3.8 PPA ACTIVE (user could have accidentally disabled)
     # DO NOT match any lines ending in #wasta
-    sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' \
-        $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list
+    sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' $PPA_FILE
 fi
 
 # remove older PPAs
 rm -f $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6*
+rm -f $APT_SOURCES_D/wasta-linux-ubuntu-wasta-testing*
 
 # ------------------------------------------------------------------------------
 # Perform dist-upgrade
@@ -139,7 +141,7 @@ echo
 apt-get $YES dist-upgrade
 
 echo
-echo "*** Ensuring wasta-cinnamon-layout updated"
+echo "*** Removing any previous version of wasta-cinnamon-layout"
 echo
 
 # 2016-05-04 rik: if attempting to remove a package that doesn't exist (such
@@ -158,6 +160,10 @@ for pkgToRemove in $(echo $pkgToRemoveListFull); do
 done
 
 apt-get $YES purge $pkgToRemoveList
+
+echo
+echo "*** Ensuring newest wasta-cinnamon-layout installed"
+echo
 
 apt-get $YES install wasta-cinnamon-layout-3-8
 
