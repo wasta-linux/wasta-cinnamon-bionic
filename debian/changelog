@@ -1,3 +1,10 @@
+wasta-cinnamon-bionic (1.0.2) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: install (no-recommends) thunar so can
+    be used as bulk-rename-tool in nemo
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 31 Aug 2018 12:37:26 +0300
+
 wasta-cinnamon-bionic (1.0.1) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: force remove wasta-testing PPA (was active
