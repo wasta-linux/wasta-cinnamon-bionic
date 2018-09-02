@@ -131,13 +131,11 @@ rm -f $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6*
 echo
 echo "*** Updating lists of available software"
 echo
-
 apt-get update
 
 echo
 echo "*** Upgrading all installed software"
 echo
-
 apt-get $YES dist-upgrade
 
 echo
@@ -168,15 +166,14 @@ echo
 apt-get $YES install wasta-cinnamon-layout-3-8
 
 # ------------------------------------------------------------------------------
-# setting thunar as bulk rename tool in nemo
+# installing thunar to use as bulk rename tool in nemo
 # ------------------------------------------------------------------------------
-apt-get $YES install --no-install recommends thunar thunar-media-tags-plugin
+apt-get $YES install --no-install-recommends thunar thunar-media-tags-plugin
 
 # ------------------------------------------------------------------------------
 # Finished
 # ------------------------------------------------------------------------------
-
-printf "\n\n\n\n\n\n"
+echo
 echo "========================================================================="
 echo "=== Script Finished ====================================================="
 echo "========================================================================="
