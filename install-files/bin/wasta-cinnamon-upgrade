@@ -8,6 +8,7 @@
 #   2018-05-20 rik: updating for Cinnamon 3.8
 #   2018-05-21 rik: removing wasta-testing PPA (was active for 18.04 Alpha)
 #   2018-08-31 rik: installing (no-recommends) thunar for bulk-rename-tool
+#   2019-02-23 rik: updating for Cinnamon 4.0
 #
 # ==============================================================================
 
@@ -104,26 +105,27 @@ else
     fi
 fi
 
-# add Wasta-Linux Cinnamon 3.8 PPA
-PPA_FILE="$APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8-$SERIES.list"
+# add Wasta-Linux Cinnamon 4.0 PPA
+PPA_FILE="$APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-4-0-$SERIES.list"
 if ! [ -e $PPA_FILE ];
 then
     echo
-    echo "*** Adding Cinnamon 3.8 PPA"
+    echo "*** Adding Cinnamon 4.0 PPA"
     echo
 
-    echo "deb http://ppa.launchpad.net/wasta-linux/cinnamon-3-8/ubuntu $SERIES main" | \
+    echo "deb http://ppa.launchpad.net/wasta-linux/cinnamon-4-0/ubuntu $SERIES main" | \
         tee $PPA_FILE
-    echo "# deb-src http://ppa.launchpad.net/wasta-linux/cinnamon-3-8/ubuntu $SERIES main" | \
+    echo "# deb-src http://ppa.launchpad.net/wasta-linux/cinnamon-4-0/ubuntu $SERIES main" | \
         tee -a $PPA_FILE
 else
-    # found, but ensure Wasta-Linux Cinnamon 3.8 PPA ACTIVE (user could have accidentally disabled)
+    # found, but ensure Wasta-Linux Cinnamon 4.0 PPA ACTIVE (user could have accidentally disabled)
     # DO NOT match any lines ending in #wasta
     sed -i -e '/#wasta$/! s@.*\(deb http://ppa.launchpad.net\)@\1@' $PPA_FILE
 fi
 
 # remove older PPAs
 rm -f $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-6*
+rm -f $APT_SOURCES_D/wasta-linux-ubuntu-cinnamon-3-8*
 
 # ------------------------------------------------------------------------------
 # Perform dist-upgrade
@@ -147,7 +149,8 @@ echo
 #   will error and not remove anything.  So instead found this way to do it:
 #       http://superuser.com/questions/518859/ignore-packages-that-are-not-currently-installed-when-using-apt-get-remove
 pkgToRemoveListFull="\
-    wasta-cinnamon-layout-3-6"
+    wasta-cinnamon-layout-3-6 \
+    wasta-cinnamon-layout-3-8"
 
 pkgToRemoveList=""
 for pkgToRemove in $(echo $pkgToRemoveListFull); do
@@ -163,7 +166,7 @@ echo
 echo "*** Ensuring newest wasta-cinnamon-layout installed"
 echo
 
-apt-get $YES install wasta-cinnamon-layout-3-8
+apt-get $YES install wasta-cinnamon-layout-4-0
 
 # ------------------------------------------------------------------------------
 # installing thunar to use as bulk rename tool in nemo

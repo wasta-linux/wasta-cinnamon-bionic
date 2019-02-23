@@ -50,7 +50,7 @@ echo
 echo "*** Script Entry: wasta-cinnamon-postinst.sh"
 echo
 
-# Setup Diretory for later reference
+# Setup Directory for later reference
 DIR=/usr/share/wasta-cinnamon
 
 # ------------------------------------------------------------------------------
