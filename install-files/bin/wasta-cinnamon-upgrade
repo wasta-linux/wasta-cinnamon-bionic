@@ -40,12 +40,14 @@ then
     
     # needed for apt-get
     YES="--yes"
+    DEBIAN_NONINTERACTIVE="DEBIAN_FRONTEND=noninteractive"
     
     # needed for gdebi
     INTERACTIVE="-n"
 else
     AUTO=""
     YES=""
+    DEBIAN_NONINTERACTIVE=""
     INTERACTIVE=""
 fi
 
@@ -138,7 +140,7 @@ apt-get update
 echo
 echo "*** Upgrading all installed software"
 echo
-apt-get $YES dist-upgrade
+$DEBIAN_NONINTERACTIVE apt-get $YES dist-upgrade
 
 echo
 echo "*** Removing any previous version of wasta-cinnamon-layout"
@@ -160,18 +162,91 @@ for pkgToRemove in $(echo $pkgToRemoveListFull); do
   fi
 done
 
-apt-get $YES purge $pkgToRemoveList
+$DEBIAN_NONINTERACTIVE apt-get $YES purge $pkgToRemoveList
 
 echo
 echo "*** Ensuring newest wasta-cinnamon-layout installed"
 echo
 
-apt-get $YES install wasta-cinnamon-layout-4-0
+$DEBIAN_NONINTERACTIVE apt-get $YES install wasta-cinnamon-layout-4-0
+
+# TODO: migrate ITM to GWL: check times and migrate (from wasta-layout script)
+# migrate all users from ITM to GWL
+# have wasta-layout (user level) use gsettings OR local gschema-override so don't need to rely on system default
+#   and then when system level set it doesn't automatically adjust any existing users, it is just there for
+#   when wasta-reset is used OR for new users.
+
+for CINN_SETTINGS in /home/*/.cinnamon;
+do
+    # get user, chown after copy of ITM to GWL or run command(s) as user
+    CINN_OWNER=$(stat -c '%U' "$CINN_SETTINGS")
+    echo
+    echo "*** Ensuring user's cinnamon configs up-to-date: $CINN_OWNER"
+    echo
+
+    ITM_FILE=$CINN_SETTINGS/configs/IcingTaskManager@json/115.json
+    if [ -e "$ITM_FILE" ];
+    then
+        ITM_PINNED_APPS=$(jq -c '.["pinned-apps"].value' < $ITM_FILE)
+    fi
+
+    # most likely will not exist, but will get created below.
+    GWL_FILE=$CINN_SETTINGS/configs/grouped-window-list@cinnamon.org/120.json
+    if [ -e "$GWL_FILE" ];
+    then
+        GWL_PINNED_APPS=$(jq -c '.["pinned-apps"].value' < $GWL_FILE)
+    fi
+
+    # migration from ITM to GWL
+    if [ "$ITM_FILE" -nt "$GWL_FILE" ];
+    then
+        echo
+        echo "*** Migrating ITM Pinned Apps to GWL for user: $CINN_OWNER"
+        echo
+        mkdir -p "$CINN_SETTINGS/configs/grouped-window-list@cinnamon.org"
+        # copy ITM to GWL, preserving date/time
+        cp -p $ITM_FILE $GWL_FILE
+        chown -R $CINN_OWNER:$CINN_OWNER $CINN_SETTINGS
+    fi
+
+    # remove local configs of applets needing reset
+    rm -rf $CINN_SETTINGS/configs/menu@cinnamon.org
+done
+
+# re-run wasta-layout-system to ensure updates applied
+
+LAYOUT_OPTION="default"
+if [ -L /usr/share/glib-2.0/schemas/z_15_wasta-layout-redmond7.gschema.override ];
+then
+    LAYOUT_OPTION=redmond7
+elif [ -L /usr/share/glib-2.0/schemas/z_15_wasta-layout-unity.gschema.override ];
+then
+    LAYOUT_OPTION=unity
+elif [ -L /usr/share/glib-2.0/schemas/z_15_wasta-layout-cupertino.gschema.override ];
+then
+    LAYOUT_OPTION=cupertino
+fi
+
+echo
+echo "*** Running wasta-layout-system to re-apply options for layout: $LAYOUT_OPTION"
+echo
+wasta-layout-system $LAYOUT_OPTION
+
+# need to restart cinnamon here for the current user for a polished experience (but I think a reboot will take care of it)
+CINN_ACTIVE=$(wmctrl -m | grep -i muffin)
+if [ "$CINN_ACTIVE" ];
+then
+    echo
+    echo "*** Restarting Cinnamon"
+    echo
+    nohup cinnamon --replace &> /dev/null &
+fi
 
 # ------------------------------------------------------------------------------
 # installing thunar to use as bulk rename tool in nemo
 # ------------------------------------------------------------------------------
-apt-get $YES install --no-install-recommends thunar thunar-media-tags-plugin
+$DEBIAN_NONINTERACTIVE apt-get $YES install --no-install-recommends \
+    thunar thunar-media-tags-plugin
 
 # ------------------------------------------------------------------------------
 # Finished

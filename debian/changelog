@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (1.1.1) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: migrate ITM to GWL for all users
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 25 Feb 2019 20:26:05 +0300
+
 wasta-cinnamon-bionic (1.1.0) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: updated for cinnamon 4.0 compatibility
