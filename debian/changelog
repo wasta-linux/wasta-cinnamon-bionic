@@ -1,3 +1,10 @@
+wasta-cinnamon-bionic (4.0.0) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: run wasta-layout-system as root and
+    wasta-layout for each user
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 01 Mar 2019 09:46:02 +0300
+
 wasta-cinnamon-bionic (1.1.1) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: migrate ITM to GWL for all users
