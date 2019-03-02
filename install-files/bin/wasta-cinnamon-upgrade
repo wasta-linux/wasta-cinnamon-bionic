@@ -240,10 +240,10 @@ then
     echo
 
     # restart cinnamon (doesn't seem to have a problem restarting as root)
-    nohup cinnamon --replace &> /dev/null &
+    # nohup cinnamon --replace &> /dev/null &
 
-    # sudo -Hu $SUDO_USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$SUDO_UID/bus \
-    #     nohup cinnamon --replace &> /dev/null &
+    sudo -Hu $SUDO_USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$SUDO_UID/bus \
+         nohup cinnamon --replace &> /dev/null &
 
     # give a few seconds for Cinnamon to finish restarting
     sleep 3s
