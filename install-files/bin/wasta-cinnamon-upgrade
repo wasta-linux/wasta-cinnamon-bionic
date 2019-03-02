@@ -173,6 +173,14 @@ $DEBIAN_NONINTERACTIVE apt-get $YES install wasta-cinnamon-layout-4-0
 # ------------------------------------------------------------------------------
 # Ensure wasta-layout-system updates applied
 # ------------------------------------------------------------------------------
+
+#first make sure app-adjustments applied (to customize cinnamon applets, etc.)
+APP_ADJ=/usr/share/wasta-multidesktop/scripts/app-adjustments.sh
+if [ -e "$APP_ADJ" ];
+then
+    bash $APP_ADJ || true;
+fi
+
 SYSTEM_LAYOUT="default"
 if [ -L /usr/share/glib-2.0/schemas/z_15_wasta-layout-redmond7.gschema.override ];
 then

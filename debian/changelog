@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.0.2) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: run app-adjustments.sh to ensure applets adjusted
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 02 Mar 2019 13:53:43 +0300
+
 wasta-cinnamon-bionic (4.0.1) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: if active, restart cinnamon
