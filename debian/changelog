@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.0.1) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: if active, restart cinnamon
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 02 Mar 2019 09:45:32 +0300
+
 wasta-cinnamon-bionic (4.0.0) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: run wasta-layout-system as root and

@@ -40,7 +40,7 @@ then
     
     # needed for apt-get
     YES="--yes"
-    DEBIAN_NONINTERACTIVE="DEBIAN_FRONTEND=noninteractive"
+    DEBIAN_NONINTERACTIVE="env DEBIAN_FRONTEND=noninteractive"
     
     # needed for gdebi
     INTERACTIVE="-n"
@@ -222,35 +222,33 @@ do
         wasta-layout $USER_LAYOUT
 done
 
-# since ran wasta-layout $USER_LAYOUT above as sudo -u, cinnamon not restarted
-#   so need to restart cinnamon as current user now (??)
+IS_CINNAMON=""
+IS_CINNAMON=$(wmctrl -m | grep -i Muffin)
 
-# update: I won't attempt restarting cinnamon because issues if not ran as the
-#   right user and that is tricky to get environment set correctly, etc.
+if [ "$IS_CINNAMON" ];
+then
+    echo
+    echo "*** Restarting Cinnamon ***"
+    echo
 
-# use wmctrl -m to see if cinnamon running (check wasta-login for syntax)
-#if [ "$DESKTOP_SESSION" == "cinnamon" ];
-#then
-#    echo
-#    echo "*** Restarting Cinnamon ***"
-#    echo
-#
-#    # restart cinnamon for current user
-#    sudo -Hu $SUDO_USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$SUDO_UID/bus \
-#        nohup cinnamon --replace &> /dev/null &
-#
-#    # give a few seconds for Cinnamon to finish restarting
-#    sleep 3s
-#
-#    echo
-#    echo "*** Cinnamon restarted ***"
-#    echo
-#else
-#    # cinnamon NOT active, don't attempt restart
-#    echo
-#    echo "*** Cinnamon not active so no need to restart it"
-#    echo
-#fi
+    # restart cinnamon (doesn't seem to have a problem restarting as root)
+    nohup cinnamon --replace &> /dev/null &
+
+    # sudo -Hu $SUDO_USER DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$SUDO_UID/bus \
+    #     nohup cinnamon --replace &> /dev/null &
+
+    # give a few seconds for Cinnamon to finish restarting
+    sleep 3s
+
+    echo
+    echo "*** Cinnamon restarted ***"
+    echo
+else
+    # cinnamon NOT active, don't attempt restart
+    echo
+    echo "*** Cinnamon not active so no need to restart it"
+    echo
+fi
 
 # ------------------------------------------------------------------------------
 # installing thunar to use as bulk rename tool in nemo
@@ -262,8 +260,6 @@ $DEBIAN_NONINTERACTIVE apt-get $YES install --no-install-recommends \
 # Finished
 # ------------------------------------------------------------------------------
 printf "\n\n\n\n\n\n"
-echo "*** Please restart Cinnamon or logout / login to see all changes"
-echo
 echo "========================================================================="
 echo "=== Script Finished ====================================================="
 echo "========================================================================="
