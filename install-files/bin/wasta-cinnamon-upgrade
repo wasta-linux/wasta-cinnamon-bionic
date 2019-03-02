@@ -170,6 +170,11 @@ echo
 
 $DEBIAN_NONINTERACTIVE apt-get $YES install wasta-cinnamon-layout-4-0
 
+echo
+echo "*** Ensuring all Cinnamon components upgraded"
+echo
+$DEBIAN_NONINTERACTIVE apt-get $YES dist-upgrade
+
 # ------------------------------------------------------------------------------
 # Ensure wasta-layout-system updates applied
 # ------------------------------------------------------------------------------
