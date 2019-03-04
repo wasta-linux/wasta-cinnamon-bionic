@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.0.3) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: buffer cinnamon restart with sleep 2
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 04 Mar 2019 08:29:32 +0300
+
 wasta-cinnamon-bionic (4.0.2) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: run app-adjustments.sh to ensure applets adjusted
