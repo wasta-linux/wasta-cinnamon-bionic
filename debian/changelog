@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.2.1) bionic; urgency=medium
+
+  * debian/control: add wasta-cinnamon-layout-4-2 as a recommends
+ 
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 09 Aug 2019 10:45:58 +0300
+
 wasta-cinnamon-bionic (4.2.0) bionic; urgency=medium
 
   * Initial cinnamon 4.2 compatibility

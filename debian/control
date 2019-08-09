@@ -9,6 +9,6 @@ Homepage: https://github.com/wasta-linux/wasta-cinnamon-bionic
 Package: wasta-cinnamon-bionic
 Architecture: all
 Depends: arc-theme, cinnamon, muffin, nemo, wasta-core-bionic, wasta-multidesktop-bionic, wasta-vertex-ubuntu, ${shlibs:Depends}, ${misc:Depends}
-Recommends: blueberry, bookletimposer, nemo-compare, nemo-image-converter, wasta-cinnamon-layout-3-8 | wasta-cinnamon-layout-4-0
+Recommends: blueberry, bookletimposer, nemo-compare, nemo-image-converter, wasta-cinnamon-layout-3-8 | wasta-cinnamon-layout-4-0 | wasta-cinnamon-layout-4-2
 Description: Wasta-Linux Cinnamon
  Wasta-Linux 18.04 Bionic Cinnamon Setup.
