@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.2.0) bionic; urgency=medium
+
+  * Initial cinnamon 4.2 compatibility
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Fri, 09 Aug 2019 09:55:49 +0300
+
 wasta-cinnamon-bionic (4.0.3) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: buffer cinnamon restart with sleep 2
