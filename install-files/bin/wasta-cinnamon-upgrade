@@ -257,7 +257,7 @@ do
     fi
 
     # remove legacy config folder
-    rm -r /home/$CINN_OWNER/.config/wasta-layout/
+    rm -rf /home/$CINN_OWNER/.config/wasta-layout/
 
     # get user's current cinnamon-layout
     if [ -e $CONFIG_FILE ];

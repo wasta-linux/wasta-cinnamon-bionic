@@ -3,6 +3,7 @@ wasta-cinnamon-bionic (4.2.2) bionic; urgency=medium
   * gschemas: adding defaults here as can't rely on cinnamon-layout to provide
   * install/Arc-Dark-Wasta: adding this cinnamon theme here since
         cinnamon-layout does not provide
+  * wasta-cinnamon-upgrade: migrating from wasta-cinnamon-layou to wasta-layout
 
  -- Rik Shaw <rikshaw76@gmail.com>  Thu, 26 Mar 2020 13:26:16 +0300
 
