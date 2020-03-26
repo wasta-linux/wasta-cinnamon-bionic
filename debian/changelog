@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.2.5) bionic; urgency=medium
+
+  * wasta-cinnamon-upgrade: fix check for $USER_LAYOUT
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Thu, 26 Mar 2020 18:31:36 +0300
+
 wasta-cinnamon-bionic (4.2.4) bionic; urgency=medium
 
   * wasta-cinnamon-upgrade: re-run wasta-cinnamon-bionic postinst

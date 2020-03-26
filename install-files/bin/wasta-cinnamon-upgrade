@@ -254,7 +254,7 @@ do
     # until cinnamon 4.0, no user config file storing current user layout
     if [ -e $LEGACY_CONFIG_FILE ];
     then
-        USER_LAYOUT=$(cat $CONFIG_FILE)
+        USER_LAYOUT=$(cat $LEGACY_CONFIG_FILE)
         echo
         echo "*** Found existing wasta-layout for $CINN_OWNER: $USER_LAYOUT"
         echo
