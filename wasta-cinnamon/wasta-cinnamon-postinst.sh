@@ -57,7 +57,7 @@ LAYOUT_DIR=/usr/share/cinnamon-layout
 # ------------------------------------------------------------------------------
 # install menu-icon using update-alternatives
 # ------------------------------------------------------------------------------
-if [-e "$LAYOUT_DIR" ];
+if [ -e "$LAYOUT_DIR" ];
 then
     echo
     echo "*** Installing Wasta-Linux default menu-icon to update-alternatives system"
