@@ -1,3 +1,4 @@
+install-files/Arc-Dark-Wasta               usr/share/themes
 install-files/bin                          usr
 install-files/lightdm.conf.d               etc/lightdm
 install-files/nemo-actions/*               usr/share/nemo/actions

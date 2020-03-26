@@ -52,6 +52,19 @@ echo
 
 # Setup Directory for later reference
 DIR=/usr/share/wasta-cinnamon
+LAYOUT_DIR=/usr/share/cinnamon-layout
+
+# ------------------------------------------------------------------------------
+# install menu-icon using update-alternatives
+# ------------------------------------------------------------------------------
+if [-e "$LAYOUT_DIR" ];
+then
+    echo
+    echo "*** Installing Wasta-Linux default menu-icon to update-alternatives system"
+    echo
+    update-alternatives --install $LAYOUT_DIR/menu-icon.svg menu-icon \
+        $DIR/resources/wl-mono-squircle.svg 150
+fi
 
 # ------------------------------------------------------------------------------
 # Dconf / Gsettings Default Value adjustments
