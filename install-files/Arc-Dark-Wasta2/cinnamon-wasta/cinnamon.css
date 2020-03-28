@@ -1541,3 +1541,9 @@ StScrollBar {
   border: 0px;
   background-color: transparent;
   border-radius: 0px; }
+
+.applet-box {
+  padding-left: 10px;
+  padding-right: 10px; }
+  .applet.vertical {
+    padding: 5px 0; }
