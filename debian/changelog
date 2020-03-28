@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.2.8) bionic; urgency=medium
+
+  * updated Arc-Dark-Wasta applet spacing
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Sat, 28 Mar 2020 21:48:18 +0300
+
 wasta-cinnamon-bionic (4.2.7) bionic; urgency=medium
 
   * nemo-actions: adding Compress_PDF

@@ -1565,8 +1565,16 @@ StScrollBar {
   background-color: rgba(0, 0, 0, 0);
   border-radius: 0px; }
 
+/* begin wasta additions */
+
 .applet-box {
-  padding-left: 10px;
-  padding-right: 10px; }
-  .applet.vertical {
+  padding: 0 5px; }
+
+.applet-box.vertical {
     padding: 5px 0; }
+
+/* No .applet-icon.vertical so vertical panel needs to be 42 px or will be squished */
+.applet-icon {
+  padding: 0 5px; }
+
+/* end wasta additions */
