@@ -1,3 +1,10 @@
+wasta-cinnamon-bionic (4.2.10) bionic; urgency=medium
+
+  * rename z_11_wasta-cinnamon to z_12_wasta-cinnamon: z_11 taken
+    by cinnamon-layout
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 13 Apr 2020 16:54:43 -0500
+
 wasta-cinnamon-bionic (4.2.9) bionic; urgency=medium
 
   * nemo-action: correct Compress_PDF path
