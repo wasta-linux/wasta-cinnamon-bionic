@@ -1,3 +1,9 @@
+wasta-cinnamon-bionic (4.2.12) bionic; urgency=medium
+
+  * postinst: removing update-alternatives logic
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Mon, 13 Apr 2020 18:08:10 -0500
+
 wasta-cinnamon-bionic (4.2.11) bionic; urgency=medium
 
   * add wasta-linux-squircle icon
