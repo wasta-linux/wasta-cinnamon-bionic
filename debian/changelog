@@ -1,3 +1,10 @@
+wasta-cinnamon-bionic (4.2.13) bionic; urgency=medium
+
+  * gschema.override: remove writer as a 'favorite' (only 3 apps
+    or else it is cut off)
+
+ -- Rik Shaw <rikshaw76@gmail.com>  Tue, 14 Apr 2020 17:16:07 -0500
+
 wasta-cinnamon-bionic (4.2.12) bionic; urgency=medium
 
   * postinst: removing update-alternatives logic
